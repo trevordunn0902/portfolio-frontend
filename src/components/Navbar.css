@@ -1,0 +1,22 @@
+/* src/components/Navbar.css */
+nav {
+  background-color: #333;
+  padding: 1rem;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #ff9800;
+}
+
+nav a.active {
+  color: #ff9800;
+  border-bottom: 2px solid #ff9800;
+}
