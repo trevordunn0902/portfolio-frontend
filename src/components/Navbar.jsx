@@ -1,9 +1,15 @@
-// src/components/Navbar.jsx
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
-function Navbar() {
+function Navbar({ auth, onLogout }) {
+  const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    if (onLogout) onLogout();
+    navigate("/"); // redirect to home after logout
+  };
+
   return (
     <nav>
       <NavLink to="/" className={({ isActive }) => (isActive ? "active" : "")}>
@@ -18,6 +24,23 @@ function Navbar() {
       <NavLink to="/contact" className={({ isActive }) => (isActive ? "active" : "")}>
         Contact
       </NavLink>
+
+      {!auth && (
+        <NavLink to="/admin" className={({ isActive }) => (isActive ? "active" : "")}>
+          Admin Login
+        </NavLink>
+      )}
+
+      {auth && (
+        <>
+          <NavLink to="/admin/dashboard" className={({ isActive }) => (isActive ? "active" : "")}>
+            Admin Dashboard
+          </NavLink>
+          <button onClick={handleLogoutClick} style={{ marginLeft: "1rem" }}>
+            Logout
+          </button>
+        </>
+      )}
     </nav>
   );
 }
