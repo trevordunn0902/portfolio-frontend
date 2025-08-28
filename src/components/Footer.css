@@ -1,0 +1,12 @@
+/* src/components/Footer.css */
+footer {
+  width: 100%;
+  background-color: var(--footer-bg, #333);
+  color: var(--text-color, #fff);
+  text-align: center;
+  padding: 1rem 0;
+  flex-shrink: 0;
+  margin-top: auto; /* ensures footer stays at bottom of flex container */
+}
+
+

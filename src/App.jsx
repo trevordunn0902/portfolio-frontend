@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Experience from './pages/Experience';
 import Portfolio from "./pages/Portfolio";
 import Contact from "./pages/Contact";
 import AdminLogin from "./pages/AdminLogin";
@@ -16,7 +17,6 @@ import "./App.css";
 function App() {
   const [auth, setAuth] = useState(null);
 
-  // Load saved credentials on mount
   useEffect(() => {
     const savedUser = localStorage.getItem("adminUser");
     const savedPass = localStorage.getItem("adminPass");
@@ -35,10 +35,11 @@ function App() {
   return (
     <Router>
       <Navbar auth={auth} onLogout={handleLogout} />
-      <main style={{ padding: "1rem" }}>
+      <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/experience" element={<Experience />} />
           <Route path="/portfolio" element={<Portfolio />} />
           <Route path="/contact" element={<Contact />} />
           <Route
@@ -53,9 +54,7 @@ function App() {
           />
           <Route
             path="/admin/dashboard"
-            element={
-              auth ? <AdminDashboard auth={auth} /> : <Navigate to="/admin" />
-            }
+            element={auth ? <AdminDashboard auth={auth} /> : <Navigate to="/admin" />}
           />
         </Routes>
       </main>

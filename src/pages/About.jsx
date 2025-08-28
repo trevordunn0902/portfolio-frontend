@@ -1,5 +1,6 @@
 // src/pages/About.jsx
 import React, { useEffect, useState } from "react";
+import "./About.css";
 
 function About() {
   const [skills, setSkills] = useState([]);
@@ -16,17 +17,19 @@ function About() {
   }, []);
 
   return (
-    <section style={{ maxWidth: "800px", margin: "2rem auto", padding: "0 1rem" }}>
+    <section>
       <h1>About Me</h1>
       <p>
         Hello! I'm Trevor, I'm 22 and a graduate of Algonquin College's Computer Engineering Technology course.
       </p>
 
-      <div style={{ marginTop: "1.5rem" }}>
+      <div>
         <h2>Skills</h2>
         {error && <p style={{ color: "red" }}>{error}</p>}
         {skills.length > 0 ? (
-          <p>{skills.map((skill) => skill.name).join(", ")}</p>
+          <p className="skills-list">
+            {skills.map((skill) => <span key={skill.id}>{skill.name}</span>)}
+          </p>
         ) : (
           <p>No skills added yet.</p>
         )}

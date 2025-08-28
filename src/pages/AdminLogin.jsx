@@ -19,15 +19,12 @@ function AdminLogin({ onLoginSuccess }) {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-
     const headers = new Headers();
     headers.set("Authorization", "Basic " + btoa(`${username}:${password}`));
 
     try {
       // Try hitting the secured /api/admin/check endpoint
-      const response = await fetch("http://localhost:8080/api/admin/check", {
-        headers,
-      });
+      const response = await fetch("http://localhost:8080/api/admin/check", { headers });
 
       if (response.ok) {
         localStorage.setItem("adminUser", username);
@@ -44,7 +41,7 @@ function AdminLogin({ onLoginSuccess }) {
   };
 
   return (
-    <section style={{ maxWidth: "400px", margin: "2rem auto" }}>
+    <section>
       <h1>Admin Login</h1>
       <form onSubmit={handleLogin}>
         <div>

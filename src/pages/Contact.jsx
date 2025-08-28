@@ -1,5 +1,6 @@
 // src/pages/Contact.jsx
 import React, { useState } from "react";
+import "./Contact.css";
 
 function Contact() {
   const [name, setName] = useState("");
@@ -10,7 +11,6 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Simple client-side validation
     if (!name || !email || !message) {
       setStatus("Please fill in all fields.");
       return;
@@ -19,9 +19,7 @@ function Contact() {
     try {
       const response = await fetch("http://localhost:8080/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message })
       });
 
@@ -41,10 +39,14 @@ function Contact() {
   };
 
   return (
-    <section style={{ maxWidth: "600px", margin: "2rem auto" }}>
+    <section>
       <h1>Contact Me</h1>
-      {status && <p style={{ color: status.includes("success") ? "green" : "red" }}>{status}</p>}
-      <form onSubmit={handleSubmit}>
+      {status && (
+        <p className={`contact-status ${status.includes("success") ? "success" : "error"}`}>
+          {status}
+        </p>
+      )}
+      <form className="contact-form" onSubmit={handleSubmit}>
         <div>
           <label>Name:</label>
           <input value={name} onChange={(e) => setName(e.target.value)} required />

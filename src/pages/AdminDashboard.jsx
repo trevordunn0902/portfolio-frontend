@@ -6,14 +6,12 @@ function AdminDashboard({ auth }) {
   const [newSkill, setNewSkill] = useState("");
   const [error, setError] = useState("");
 
-  // Use environment variable for backend URL
   const BACKEND_URL = import.meta.env.VITE_API_BASE_URL;
 
   const headers = new Headers();
   headers.set("Authorization", "Basic " + btoa(`${auth.username}:${auth.password}`));
   headers.set("Content-Type", "application/json");
 
-  // Fetch all skills
   const fetchSkills = async () => {
     try {
       const response = await fetch(`${BACKEND_URL}/api/skills`, { headers });
@@ -26,7 +24,6 @@ function AdminDashboard({ auth }) {
     }
   };
 
-  // Add a new skill
   const addSkill = async () => {
     if (!newSkill.trim()) return;
     try {
@@ -37,13 +34,12 @@ function AdminDashboard({ auth }) {
       });
       if (!response.ok) throw new Error("Failed to add skill");
       setNewSkill("");
-      fetchSkills(); // refresh skills list
+      fetchSkills();
     } catch {
       setError("Error adding skill");
     }
   };
 
-  // Delete a skill
   const deleteSkill = async (id) => {
     try {
       const response = await fetch(`${BACKEND_URL}/api/skills/${id}`, {
@@ -51,7 +47,7 @@ function AdminDashboard({ auth }) {
         headers,
       });
       if (!response.ok) throw new Error("Failed to delete skill");
-      fetchSkills(); // refresh skills list
+      fetchSkills();
     } catch {
       setError("Error deleting skill");
     }
@@ -62,12 +58,11 @@ function AdminDashboard({ auth }) {
   }, []);
 
   return (
-    <section style={{ maxWidth: "600px", margin: "2rem auto" }}>
+    <section>
       <h1>Admin Dashboard</h1>
-
       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      <div style={{ marginBottom: "1rem" }}>
+      <div>
         <input
           placeholder="New skill"
           value={newSkill}
@@ -82,7 +77,7 @@ function AdminDashboard({ auth }) {
       ) : (
         <ul>
           {skills.map((skill) => (
-            <li key={skill.id} style={{ marginBottom: "0.5rem" }}>
+            <li key={skill.id}>
               {skill.name}{" "}
               <button onClick={() => deleteSkill(skill.id)}>Delete</button>
             </li>
@@ -94,3 +89,4 @@ function AdminDashboard({ auth }) {
 }
 
 export default AdminDashboard;
+

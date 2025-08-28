@@ -1,0 +1,51 @@
+/* src/pages/Contact.css */
+
+.contact-form {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.contact-status {
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+/* Status colors using CSS variables for consistency */
+.contact-status.success {
+  color: var(--success-color, #4caf50);
+}
+
+.contact-status.error {
+  color: var(--error-color, #f44336);
+}
+
+/* Inputs and textarea styling overrides if needed */
+.contact-form input,
+.contact-form textarea,
+.contact-form button {
+  width: 100%;
+  padding: 0.6em;
+  border-radius: 6px;
+  border: 1px solid var(--border-color);
+  background-color: var(--card-bg);
+  color: var(--text-color);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: 2px solid var(--accent-color);
+}
+
+.contact-form button {
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: border-color 0.25s, background-color 0.25s;
+}
+
+.contact-form button:hover {
+  border-color: var(--accent-color);
+  background-color: #292929;
+}
