@@ -109,7 +109,7 @@
   background-color: var(--accent-color, #ff9800);
 }
 
-/* Timeline Items */
+/* Timeline Items with thin white outline */
 .timeline-item {
   position: relative;
   width: 45%;
@@ -117,7 +117,16 @@
   margin: 2rem 0;
   background: var(--card-bg);
   border-radius: 6px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* thin white outline */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hover Effect */
+.timeline-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  background: var(--card-bg);
+  border-color: rgba(255, 255, 255, 0.5); /* slightly brighter on hover */
 }
 
 /* Left-side items */
@@ -153,13 +162,7 @@
   left: -8px;
 }
 
-/* Hover Effects */
-.timeline-item:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  background: var(--card-bg);
-}
-
+/* Dot Hover Effect */
 .timeline-item:hover .timeline-dot {
   transform: scale(1.2);
 }
