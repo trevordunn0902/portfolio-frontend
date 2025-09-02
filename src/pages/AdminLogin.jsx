@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "./AdminLogin.css";
 
 function AdminLogin({ onLoginSuccess }) {
   const [username, setUsername] = useState("");
@@ -23,8 +24,9 @@ function AdminLogin({ onLoginSuccess }) {
     headers.set("Authorization", "Basic " + btoa(`${username}:${password}`));
 
     try {
-      // Try hitting the secured /api/admin/check endpoint
-      const response = await fetch("http://localhost:8080/api/admin/check", { headers });
+      const response = await fetch("http://localhost:8080/api/admin/check", {
+        headers,
+      });
 
       if (response.ok) {
         localStorage.setItem("adminUser", username);
@@ -43,27 +45,29 @@ function AdminLogin({ onLoginSuccess }) {
   return (
     <section>
       <h1>Admin Login</h1>
-      <form onSubmit={handleLogin}>
-        <div>
-          <label>Username:</label>
-          <input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        {error && <p style={{ color: "red" }}>{error}</p>}
-        <button type="submit">Login</button>
-      </form>
+      <div className="login-form-wrapper">
+        {error && <p className="login-status error">{error}</p>}
+        <form className="login-form" onSubmit={handleLogin}>
+          <div>
+            <input
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit">Login</button>
+        </form>
+      </div>
     </section>
   );
 }
