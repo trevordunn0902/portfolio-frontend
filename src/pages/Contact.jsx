@@ -1,5 +1,6 @@
 // src/pages/Contact.jsx
 import React, { useState } from "react";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import "./Contact.css";
 
 function Contact() {
@@ -20,7 +21,7 @@ function Contact() {
       const response = await fetch("http://localhost:8080/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message })
+        body: JSON.stringify({ name, email, message }),
       });
 
       if (response.ok) {
@@ -41,26 +42,59 @@ function Contact() {
   return (
     <section>
       <h1>Contact Me</h1>
-      {status && (
-        <p className={`contact-status ${status.includes("success") ? "success" : "error"}`}>
-          {status}
-        </p>
-      )}
-      <form className="contact-form" onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <input value={name} onChange={(e) => setName(e.target.value)} required />
+      <div className="contact-container">
+        {/* Contact Info Bubble */}
+        <aside className="contact-info">
+          <h2>Get in Touch</h2>
+          <p>Email: <a href="mailto:dunntb2002@gmail.com">dunntb2002@gmail.com</a></p>
+          <p>Phone: <a href="tel:6138058738">(613) 805-8738</a></p>
+          <div className="contact-socials">
+            <a href="https://github.com/trevordunn0902" target="_blank" rel="noopener noreferrer">
+              <FaGithub size={28} />
+            </a>
+            <a href="https://www.linkedin.com/in/trevor-dunn-6a00932a7" target="_blank" rel="noopener noreferrer">
+              <FaLinkedin size={28} />
+            </a>
+          </div>
+        </aside>
+
+        {/* Form */}
+        <div className="contact-form-wrapper">
+          {status && (
+            <p className={`contact-status ${status.includes("success") ? "success" : "error"}`}>
+              {status}
+            </p>
+          )}
+          <form className="contact-form" onSubmit={handleSubmit}>
+            <div>
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Your Name"
+                required
+              />
+            </div>
+            <div>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Your Email"
+                required
+              />
+            </div>
+            <div>
+              <textarea
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Your Message"
+                required
+              />
+            </div>
+            <button type="submit">Send</button>
+          </form>
         </div>
-        <div>
-          <label>Email:</label>
-          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        </div>
-        <div>
-          <label>Message:</label>
-          <textarea value={message} onChange={(e) => setMessage(e.target.value)} required />
-        </div>
-        <button type="submit">Send</button>
-      </form>
+      </div>
     </section>
   );
 }

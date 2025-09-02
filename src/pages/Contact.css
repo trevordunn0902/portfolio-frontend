@@ -1,19 +1,107 @@
 /* src/pages/Contact.css */
 
-.contact-form {
-  width: 100%;
-  max-width: 600px;
+section {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  align-items: center;
+  padding: 4rem 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+  color: var(--accent-color);
+  text-align: center;
+  font-weight: 700;
+}
+
+/* Container: side by side layout */
+.contact-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px;
+}
+
+/* Contact info bubble */
+.contact-info {
+  flex: 1 1 280px;
+  background: var(--card-bg, #1e1e1e);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15); 
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-info h2 {
+  margin-bottom: 0.5rem;
+  color: var(--accent-color);
+  font-size: 1.4rem;
+}
+
+.contact-info p {
+  margin: 0.3rem 0;
+  font-size: 1rem;
+  color: var(--text-color, #ddd);
+}
+
+.contact-info a {
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-info a:hover {
+  color: var(--accent-hover-color, #00939a);
+}
+
+/* Social icons */
+.contact-socials {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.contact-socials a {
+  color: var(--text-color, #f5f5f5);
+  transition: color 0.3s, transform 0.2s;
+}
+
+.contact-socials a:hover {
+  color: var(--accent-color, #00adb5);
+  transform: scale(1.1);
+}
+
+/* Form wrapper */
+.contact-form-wrapper {
+  flex: 1 1 380px;
+}
+
+/* Form styles */
+.contact-form {
+  width: 100%;
+  background: var(--card-bg, #1e1e1e);
+  padding: 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .contact-status {
   font-weight: 500;
   margin-bottom: 1rem;
+  text-align: center;
+  font-size: 0.95rem;
 }
 
-/* Status colors using CSS variables for consistency */
 .contact-status.success {
   color: var(--success-color, #4caf50);
 }
@@ -22,30 +110,60 @@
   color: var(--error-color, #f44336);
 }
 
-/* Inputs and textarea styling overrides if needed */
+/* Input group */
+.contact-form div {
+  display: flex;
+  flex-direction: column;
+}
+
 .contact-form input,
-.contact-form textarea,
-.contact-form button {
+.contact-form textarea {
   width: 100%;
-  padding: 0.6em;
-  border-radius: 6px;
-  border: 1px solid var(--border-color);
-  background-color: var(--card-bg);
-  color: var(--text-color);
+  padding: 0.75em 1em;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-color, #333);
+  background-color: var(--input-bg, #2a2a2a);
+  color: var(--text-color, #f5f5f5);
+  font-size: 1rem;
+  transition: border-color 0.25s, box-shadow 0.25s;
 }
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-  outline: 2px solid var(--accent-color);
+  outline: none;
+  border-color: var(--accent-color, #00adb5);
+  box-shadow: 0 0 0 3px rgba(0, 173, 181, 0.25);
 }
 
+.contact-form textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+
+/* Button */
 .contact-form button {
+  background: var(--accent-color, #00adb5);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.8em 1.2em;
+  border-radius: 0.75rem;
+  border: none;
   cursor: pointer;
-  border: 1px solid transparent;
-  transition: border-color 0.25s, background-color 0.25s;
+  transition: background-color 0.25s, transform 0.15s ease;
 }
 
 .contact-form button:hover {
-  border-color: var(--accent-color);
-  background-color: #292929;
+  background-color: var(--accent-hover-color, #00939a);
+  transform: translateY(-2px);
+}
+
+.contact-form button:active {
+  transform: translateY(0);
+}
+
+::placeholder {
+  color: #aaa;
+  opacity: 0.8;
+  font-size: 0.95rem;
 }
